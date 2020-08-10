@@ -41,8 +41,6 @@
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copiarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.desfazerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refazerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formatarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negritoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.italicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,9 +153,7 @@
             // 
             this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copiarToolStripMenuItem,
-            this.colarToolStripMenuItem,
-            this.desfazerToolStripMenuItem,
-            this.refazerToolStripMenuItem});
+            this.colarToolStripMenuItem});
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
             this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.editarToolStripMenuItem.Text = "Editar";
@@ -175,18 +171,6 @@
             this.colarToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.colarToolStripMenuItem.Text = "Colar";
             this.colarToolStripMenuItem.Click += new System.EventHandler(this.colarToolStripMenuItem_Click);
-            // 
-            // desfazerToolStripMenuItem
-            // 
-            this.desfazerToolStripMenuItem.Name = "desfazerToolStripMenuItem";
-            this.desfazerToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.desfazerToolStripMenuItem.Text = "Desfazer";
-            // 
-            // refazerToolStripMenuItem
-            // 
-            this.refazerToolStripMenuItem.Name = "refazerToolStripMenuItem";
-            this.refazerToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
-            this.refazerToolStripMenuItem.Text = "Refazer";
             // 
             // formatarToolStripMenuItem
             // 
@@ -468,8 +452,6 @@
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copiarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem colarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem desfazerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refazerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem negritoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem italicoToolStripMenuItem;
