@@ -13,7 +13,7 @@ namespace EditorTexto
 {
     public partial class F_principal : Form
     {
-        StreamReader leitura = null;
+        StringReader leitura = null;
         public F_principal()
         {
             InitializeComponent();
@@ -23,6 +23,9 @@ namespace EditorTexto
         {
 
         }
+
+        // Inserindo funcionalidades no botão (Novo)
+
         private void Novo()
         {
             rtb_texto.Clear();
@@ -38,6 +41,9 @@ namespace EditorTexto
         {
             Novo();
         }
+
+        // Inserindo funcionalidades no botão (Salvar)
+
         private void Salvar()
         {
             try
@@ -76,6 +82,8 @@ namespace EditorTexto
         {
             Salvar();
         }
+
+        // Inserindo funcionalidades no botão (Abrir)
 
         private void Abrir()
         {
@@ -119,6 +127,8 @@ namespace EditorTexto
             Abrir();
         }
 
+        // Inserindo funcionalidades no botão (Copiar)
+
         private void Copiar()
         {
             if(rtb_texto.SelectionLength > 0)
@@ -130,6 +140,9 @@ namespace EditorTexto
                 MessageBox.Show("Nenhum elemento foi selecionado");
             }
         }
+
+        // Inserindo funcionalidades no botão (Colar)
+        // Atribuindo as funcionalidades dos botões (copiar e colar)
 
         private void Colar()
         {
@@ -155,6 +168,9 @@ namespace EditorTexto
         {
             Colar();
         }
+
+        // Inserindo a funcionalidades nas opções de formatação de caracteres
+
         private void Negrito()
         {
             string nome_fonte = null;
@@ -331,6 +347,124 @@ namespace EditorTexto
         private void sublinhadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Sublinhado();
+        }
+
+        // Inserindo a funcionalidades nas opções de formatação de alinhamento de caracteres
+
+        private void AlinhamentoEsquerda()
+        {
+            rtb_texto.SelectionAlignment = HorizontalAlignment.Left;
+        }
+
+        private void AlinhamentoCentro()
+        {
+            rtb_texto.SelectionAlignment = HorizontalAlignment.Center;
+        }
+
+        private void AlinhamentoDireita()
+        {
+            rtb_texto.SelectionAlignment = HorizontalAlignment.Right;
+        }
+
+        private void tsb_direita_Click(object sender, EventArgs e)
+        {
+            AlinhamentoDireita();
+        }
+
+        private void tsb_centro_Click(object sender, EventArgs e)
+        {
+            AlinhamentoCentro();
+        }
+
+        private void tsb_esquerda_Click(object sender, EventArgs e)
+        {
+            AlinhamentoEsquerda();
+        }
+
+        private void centralizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlinhamentoCentro();
+        }
+
+        private void esquerdaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlinhamentoEsquerda();
+        }
+
+        private void direitaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AlinhamentoDireita();
+        }
+
+        // Inserindo a funcionalidade de Impressão
+
+        private void imprimirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printDialog1.Document = printDocument1;
+            string texto = this.rtb_texto.Text;
+            leitura = new StringReader(texto);
+
+            if(printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                this.printDocument1.Print();
+            }
+        }
+
+        // Configurando o tipo da impressão
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            float linhaspag = 0;
+            float pos_y = 0;
+            int cont = 0;
+
+            float marg_esquerda = e.MarginBounds.Left - 50;
+            float marg_superior = e.MarginBounds.Top - 50;
+
+            if (marg_esquerda < 5)
+            {
+                marg_esquerda = 20;
+            }
+            if (marg_superior < 5)
+            {
+                marg_superior = 20;
+            }
+
+            string linha = null;
+
+            Font font = this.rtb_texto.Font;
+            SolidBrush pincel = new SolidBrush(Color.Black);
+
+            // Essa função ira calcular o numero de linhas por pagina 
+
+            linhaspag = e.MarginBounds.Height / font.GetHeight(e.Graphics);
+
+            linha = leitura.ReadLine();
+
+            while(cont < linhaspag)
+            {
+                pos_y = (marg_superior + (cont * font.GetHeight(e.Graphics)));
+                e.Graphics.DrawString(linha, font, pincel, marg_esquerda, pos_y, new StringFormat());
+                cont += 1;
+                linha = leitura.ReadLine();
+            }
+
+            if(linha != null)
+            {
+                e.HasMorePages = true;
+            }
+            else
+            {
+                e.HasMorePages = false;
+            }
+
+            pincel.Dispose();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            F_principal f_Principal = new F_principal();
+            f_Principal.Close();
         }
     }
 }
